@@ -135,18 +135,18 @@ public class NotificationModule extends ReactContextBaseJavaModule implements Ac
         PackageManager pm = reactContext.getPackageManager();
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
             if(pm.isInteractive()){
-                param.putString("screen_status", 'on');
+                param.putString("screen_status", "on");
             }
             else{
-                param.putString("screen_status", 'off');
+                param.putString("screen_status", "off");
             }
         }
         else{
             if(pm.isScreenOn()){
-                param.putString("screen_status", 'on');
+                param.putString("screen_status", "on");
             }
             else{
-                param.putString("screen_status", 'off');
+                param.putString("screen_status", "off");
             }
         }
         promise.resolve(param);
