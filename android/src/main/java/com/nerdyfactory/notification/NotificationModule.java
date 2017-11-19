@@ -129,6 +129,29 @@ public class NotificationModule extends ReactContextBaseJavaModule implements Ac
         promise.resolve(params);
     }
 
+    @ReactMethod
+    public void getScreenStatus(Promise promise) {
+        WritableNativeMap param = new WritableNativeMap();
+        PackageManager pm = reactContext.getPackageManager();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+            if(pm.isInteractive()){
+                param.putString("screen_status", 'on');
+            }
+            else{
+                param.putString("screen_status", 'off');
+            }
+        }
+        else{
+            if(pm.isScreenOn()){
+                param.putString("screen_status", 'on');
+            }
+            else{
+                param.putString("screen_status", 'off');
+            }
+        }
+        promise.resolve(param);
+    }
+
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {}
 
